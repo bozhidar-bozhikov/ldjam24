@@ -17,6 +17,10 @@ public class AttackState : State
     public override void UpdateState(AIStateMachine sm)
     {
         OnUpdate(sm);
+
+        //TODO improve
+        sm.transform.LookAt(PlayerStats.player, Vector3.up);
+        sm.transform.eulerAngles = new Vector3(0, sm.transform.eulerAngles.y, 0);
     }
 
     public virtual void OnUpdate(AIStateMachine sm)
@@ -89,25 +93,33 @@ public class TrooperAttack : AttackState
 {
     public override void OnEnter(AIStateMachine sm)
     {
-        sm.StartCoroutine(Shoot(sm));
-
+        //check line of sight
+        Vector3 direction = PlayerStats.player.position - sm.stats.firepoint.position;
+        RaycastHit hit;
+        if (Physics.Raycast(sm.stats.firepoint.position, direction, out hit))
+        {
+            if (hit.transform.CompareTag("Player")) sm.StartCoroutine(Shoot(sm));
+            else sm.ChangeState(sm.idleState);
+        }
     }
 
     private IEnumerator Shoot(AIStateMachine sm)
     {
         GameObject bullet = ParameterManager.CreateGameObject(ParameterManager.instance.bulletPrefab);
         bullet.transform.parent = sm.stats.firepoint;
-        bullet.transform.localPosition = Vector3.zero;
+        bullet.transform.position = sm.stats.firepoint.position;
 
         yield return new WaitForSeconds(sm.stats.attackWindup);
 
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        Vector3 direction = sm.agent.player.position - sm.stats.firepoint.position;
-        bullet.GetComponent<EnemyBullet>().type = 
-            (sm.enemyType == EnemyType.Trooper) ? EnemyBulletType.Ballistic : EnemyBulletType.Explosive;
+        if (bullet != null)
+        {
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            Vector3 direction = sm.agent.player.position - sm.stats.firepoint.position;
+            bullet.GetComponent<EnemyBullet>().type =
+                (sm.enemyType == EnemyType.Trooper) ? EnemyBulletType.Ballistic : EnemyBulletType.Explosive;
 
-        rb.AddForce(direction * ParameterManager.instance.enemyBulletForce, ForceMode.Impulse);
-
+            rb.AddForce(direction * ParameterManager.instance.enemyBulletForce, ForceMode.Impulse);
+        }
         yield return new WaitForSeconds(sm.stats.attackDuration);
 
         yield return new WaitForSeconds(sm.stats.attackCooldown);

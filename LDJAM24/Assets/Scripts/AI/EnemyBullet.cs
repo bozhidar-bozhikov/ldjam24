@@ -7,15 +7,15 @@ public class EnemyBullet : MonoBehaviour
 {
     public EnemyBulletType type;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (type == EnemyBulletType.Ballistic && collision.transform.CompareTag("Player"))
+        if (type == EnemyBulletType.Ballistic && other.transform.CompareTag("Player"))
         {
             PlayerStats.TakeDamage();
         }
         else
         {
-            RaycastHit[] hit = Physics.SphereCastAll(transform.position, 
+            RaycastHit[] hit = Physics.SphereCastAll(transform.position,
                 ParameterManager.instance.enemyExplosiveRadius, transform.forward);
 
             foreach (RaycastHit item in hit)

@@ -23,7 +23,6 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Sniper : Gun
@@ -9,7 +10,7 @@ public class Sniper : Gun
 
     protected override void Shoot()
     {
-        RaycastHit[] hits = Physics.RaycastAll(fpsCam.transform.position, fpsCam.transform.forward, piercingRange);
+        RaycastHit[] hits = Physics.RaycastAll(PlayerStats.instance.firepoint.position, PlayerStats.instance.firepoint.forward, piercingRange);
 
         foreach(RaycastHit hit in hits)
         {
@@ -22,12 +23,15 @@ public class Sniper : Gun
                 target.TakeDamage(piercingDamage);
             }
         }
+
+        CreatePhysicalBullet(fpsCam.transform.forward);
+        base.Shoot();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
