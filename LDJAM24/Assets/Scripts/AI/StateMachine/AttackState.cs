@@ -151,6 +151,9 @@ public class WalkerAttack : AttackState
     {
         yield return new WaitForSeconds(sm.stats.attackWindup);
 
+        if (Random.Range(1, 3) == 1) sm.agent.animator.SetTrigger("Overhead");
+        else sm.agent.animator.SetTrigger("Shank");
+
         if (Vector3.Distance(sm.agent.player.position, sm.transform.position) < sm.stats.attackDistance)
         {
             PlayerStats.TakeDamage();
