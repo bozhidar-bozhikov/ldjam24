@@ -142,6 +142,8 @@ public class WalkerAttack : AttackState
 {
     public override void OnEnter(AIStateMachine sm)
     {
+        sm.agent.animator.SetTrigger("Attack");
+
         sm.StartCoroutine(Slash(sm));
     }
 

@@ -40,7 +40,7 @@ public class DefaultIdle : IdleState
 {
     public override void OnEnter(AIStateMachine sm)
     {
-        Debug.Log("Idling");
+        
     }
 
     public override void OnUpdate(AIStateMachine sm)
