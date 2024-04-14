@@ -721,6 +721,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6247173439238700700, guid: af5b6b156a2bc1b4da2546def91ef62b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34b8bcc593fdaf54aae52c5fea49108c, type: 2}
     - target: {fileID: 919132149155446097, guid: af5b6b156a2bc1b4da2546def91ef62b, type: 3}
       propertyPath: m_Name
       value: Knife guy
