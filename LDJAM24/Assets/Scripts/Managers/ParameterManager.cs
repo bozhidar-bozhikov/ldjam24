@@ -13,7 +13,11 @@ public class ParameterManager : MonoBehaviour
     }
 
     public GameObject bulletPrefab;
+    public GameObject playerBulletPrefab;
 
+    public float playerBulletDestroyDelay;
+    public float playerGrenadeForce;
+    public float playerGrenadeYAxisMultiplier;
     public float enemyBulletForce;
     public float enemyExplosiveRadius;
     public float flamerAttackDistance;

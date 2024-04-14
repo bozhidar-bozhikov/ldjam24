@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
 
     public static Transform player;
+
+    public Gun currentGun;
+    public Transform GunHolder;
+    public Transform firepoint;
+    public Transform trailpoint;
 
     private void Awake()
     {
@@ -25,6 +32,22 @@ public class PlayerStats : MonoBehaviour
         quota = 0;
         cells = maxCells;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DiscardGun();
+        }
+    }
+
+    public void DiscardGun()
+    {
+        if (currentGun == null) return;
+        else Destroy(currentGun);
+    }
+
+    
 
     public static void ChangeCells(int amount)
     {

@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public string gunName;
     public float damage = 10f;
     public float range = 100f;
 
-    public Camera fpsCam;
+    protected Camera fpsCam;
 
+    public int maxBullets;
+    public int bullets;
+
+    private void Start()
+    {
+        fpsCam = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
@@ -21,20 +29,35 @@ public class Gun : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        RaycastHit hit;
+        bullets--;
 
-        if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (bullets <= 0) GunManager.RanOut();
+    }
+
+    protected GameObject CreatePhysicalBullet(Vector3 direction, RaycastHit hit)
+    {
+        GameObject bullet = CreatePhysicalBullet(direction);
+
+        if (hit.collider != null)
         {
-            Debug.Log(hit.transform.name);
-
-            Target target = hit.transform.GetComponent<Target>();
-        
-            if(target != null)
-            {
-                target.TakeDamage(damage);
-            }
-        
+            bullet.transform.forward = hit.point - PlayerStats.instance.trailpoint.position;
+            bullet.transform.localScale = new Vector3(1, 1, Vector3.Magnitude(PlayerStats.instance.firepoint.position - hit.point));
         }
 
+        return bullet;
+    }
+
+    protected GameObject CreatePhysicalBullet(Vector3 direction)
+    {
+        GameObject bullet = Instantiate(ParameterManager.instance.playerBulletPrefab,
+            PlayerStats.instance.trailpoint.position, Quaternion.identity);
+
+        Destroy(bullet, ParameterManager.instance.playerBulletDestroyDelay);
+
+        bullet.transform.forward = direction;
+
+        bullet.transform.localScale = new Vector3(1, 1, 999);
+
+        return bullet;
     }
 }

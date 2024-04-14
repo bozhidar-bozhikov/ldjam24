@@ -5,15 +5,13 @@ using UnityEngine;
 public class GrenadeLauncher : Gun
 {
     public GameObject grenadePrefab; // Prefab for the grenade object
-    public float launchForce = 20f; // Initial launch force
     public float explosionRadius = 5f; // Radius of the damaging sphere zone
     public float explosionDamage = 100f; // Damage dealt within the sphere zone
-    public Transform firePoint; // Point where the grenade is launched from
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireGrenade();
         }
@@ -22,10 +20,19 @@ public class GrenadeLauncher : Gun
     void FireGrenade()
     {
         // Instantiate the grenade prefab
-        GameObject grenade = Instantiate(grenadePrefab, firePoint.transform.position, Quaternion.identity);
+        GameObject grenade = Instantiate(grenadePrefab, PlayerStats.instance.firepoint.position, Quaternion.identity);
 
         // Apply an initial force to the grenade
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
-        rb.AddForce(fpsCam.transform.forward * launchForce, ForceMode.Impulse);
+        print(fpsCam.transform.forward);
+
+        Vector3 cross = Vector3.Cross(fpsCam.transform.forward, fpsCam.transform.right).normalized 
+            * ParameterManager.instance.playerGrenadeYAxisMultiplier;
+
+        Vector3 direction = fpsCam.transform.forward + cross;
+
+        rb.AddForce(direction * ParameterManager.instance.playerGrenadeForce, ForceMode.Impulse);
+
+        base.Shoot();
     }
 }

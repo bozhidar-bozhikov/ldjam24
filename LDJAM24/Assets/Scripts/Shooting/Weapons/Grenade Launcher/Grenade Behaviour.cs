@@ -9,10 +9,12 @@ public class GrenadeBehavior : MonoBehaviour
 
 
     // Called when the grenade hits the ground or an obstacle
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
+        if (collider.transform.CompareTag("Player")) return;
+
         // Create a sphere zone at the impact point
-        Collider[] colliders = Physics.OverlapSphere(collision.contacts[0].point, explosionRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (Collider hitCollider in colliders)
         {

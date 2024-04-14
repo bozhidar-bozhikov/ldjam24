@@ -8,12 +8,11 @@ public class SMG : Gun
     public float smgDamage = 2f;
     private float nextTimeToFire = 0f;
 
-
     protected override void Shoot()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(PlayerStats.instance.firepoint.position, PlayerStats.instance.firepoint.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
 
@@ -23,14 +22,15 @@ public class SMG : Gun
             {
                 target.TakeDamage(smgDamage);
             }
-
         }
 
+        CreatePhysicalBullet(fpsCam.transform.forward, hit);
+        base.Shoot();
     }
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
