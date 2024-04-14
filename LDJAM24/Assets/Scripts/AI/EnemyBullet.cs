@@ -12,6 +12,8 @@ public class EnemyBullet : MonoBehaviour
         if (type == EnemyBulletType.Ballistic && other.transform.CompareTag("Player"))
         {
             PlayerStats.TakeDamage();
+
+            Destroy(gameObject);
         }
         else
         {
@@ -23,12 +25,13 @@ public class EnemyBullet : MonoBehaviour
                 if (item.transform.CompareTag("Player"))
                 {
                     PlayerStats.TakeDamage();
+
+                    Destroy(gameObject);
+
                     break;
                 }
             }
         }
-
-        Destroy(gameObject);
     }
 }
 

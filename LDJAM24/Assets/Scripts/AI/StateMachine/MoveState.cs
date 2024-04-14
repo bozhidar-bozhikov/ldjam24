@@ -40,7 +40,7 @@ public class TrooperMove : MoveState
 {
     public override void OnEnter(AIStateMachine sm)
     {
-
+        sm.agent.animator.SetBool("Move", true);
     }
 
     public override void OnUpdate(AIStateMachine sm)
@@ -59,6 +59,7 @@ public class TrooperMove : MoveState
     public override void OnExit(AIStateMachine sm)
     {
         sm.agent.navMesh.SetDestination(sm.transform.position);
+        sm.agent.animator.SetBool("Move", false);
     }
 }
 

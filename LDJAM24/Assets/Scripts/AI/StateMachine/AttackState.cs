@@ -105,16 +105,20 @@ public class TrooperAttack : AttackState
 
     private IEnumerator Shoot(AIStateMachine sm)
     {
+        sm.agent.animator.SetBool("Shoot", true);
+
         GameObject bullet = ParameterManager.CreateGameObject(ParameterManager.instance.bulletPrefab);
-        bullet.transform.parent = sm.stats.firepoint;
+        bullet.transform.parent = sm.stats.firepoint.parent;
         bullet.transform.position = sm.stats.firepoint.position;
 
         yield return new WaitForSeconds(sm.stats.attackWindup);
 
+        bullet.transform.parent = null;
+
         if (bullet != null)
         {
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            Vector3 direction = sm.agent.player.position - sm.stats.firepoint.position;
+            Vector3 direction = sm.agent.cam.position - sm.stats.firepoint.position;
             bullet.GetComponent<EnemyBullet>().type =
                 (sm.enemyType == EnemyType.Trooper) ? EnemyBulletType.Ballistic : EnemyBulletType.Explosive;
 
@@ -134,7 +138,7 @@ public class TrooperAttack : AttackState
 
     public override void OnExit(AIStateMachine sm)
     {
-
+        sm.agent.animator.SetBool("Shoot", false);
     }
 }
 
@@ -142,7 +146,7 @@ public class WalkerAttack : AttackState
 {
     public override void OnEnter(AIStateMachine sm)
     {
-        sm.agent.animator.SetTrigger("Attack");
+        sm.agent.animator.SetBool("Attack", true);
 
         sm.StartCoroutine(Slash(sm));
     }
@@ -160,6 +164,9 @@ public class WalkerAttack : AttackState
         }
         yield return new WaitForSeconds(sm.stats.attackDuration);
 
+        sm.agent.animator.ResetTrigger("Overhead");
+        sm.agent.animator.ResetTrigger("Shank");
+
         yield return new WaitForSeconds(sm.stats.attackCooldown);
 
         sm.ChangeState(sm.idleState);
@@ -172,7 +179,7 @@ public class WalkerAttack : AttackState
 
     public override void OnExit(AIStateMachine sm)
     {
-
+        sm.agent.animator.SetBool("Attack", false);
     }
 }
 

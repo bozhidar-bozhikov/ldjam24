@@ -32,9 +32,14 @@ public class AIStateMachine : MonoBehaviour
                     attackState = new WalkerAttack();
                 } break;
             case EnemyType.Trooper:
-            case EnemyType.RocketTrooper:
                 {
                     moveState = new TrooperMove();
+                    idleState = new DefaultIdle();
+                    attackState = new TrooperAttack();
+                } break;
+            case EnemyType.RocketTrooper:
+                {
+                    moveState = new StationaryMove();
                     idleState = new DefaultIdle();
                     attackState = new TrooperAttack();
                 } break;

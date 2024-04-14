@@ -40,7 +40,7 @@ public class DefaultIdle : IdleState
 {
     public override void OnEnter(AIStateMachine sm)
     {
-        
+        sm.agent.animator.SetTrigger("Idle");
     }
 
     public override void OnUpdate(AIStateMachine sm)
@@ -59,7 +59,7 @@ public class DefaultIdle : IdleState
 
     public override void OnExit(AIStateMachine sm)
     {
-
+        sm.agent.animator.ResetTrigger("Idle");
     }
 }
 
