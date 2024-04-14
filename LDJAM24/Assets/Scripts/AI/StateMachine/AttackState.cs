@@ -113,10 +113,11 @@ public class TrooperAttack : AttackState
 
         yield return new WaitForSeconds(sm.stats.attackWindup);
 
-        bullet.transform.parent = null;
+       // bullet.transform.parent = null;
 
         if (bullet != null)
         {
+            bullet.transform.parent = null;
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             Vector3 direction = sm.agent.cam.position - sm.stats.firepoint.position;
             bullet.GetComponent<EnemyBullet>().type =

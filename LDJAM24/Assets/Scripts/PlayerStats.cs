@@ -56,6 +56,7 @@ public class PlayerStats : MonoBehaviour
         if (instance.cells <= 0)
         {
             Debug.Log("player died");
+            Time.timeScale = 0f; // freeze time when player dies
         }
     }
 
