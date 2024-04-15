@@ -7,10 +7,14 @@ public class GrenadeBehavior : MonoBehaviour
     public float explosionRadius = 5f; // Radius of the damaging sphere zone
     public float explosionDamage = 100f; // Damage dealt within the sphere zone
 
+    public CameraShake cameraShake; // Reference to the CameraShake script
+
 
     // Called when the grenade hits the ground or an obstacle
     void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("Grenade hit something. Particles to be added!!!");
+
         if (collider.transform.CompareTag("Player")) return;
 
         // Create a sphere zone at the impact point

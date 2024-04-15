@@ -33,6 +33,8 @@ public class Gun : MonoBehaviour
 
     protected virtual void Shoot()
     {
+        FindObjectOfType<SoundManager>().Play("Shoot");
+
         animator.SetTrigger("Shoot");
 
         bullets--;
