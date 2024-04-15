@@ -1540,7 +1540,11 @@ PrefabInstance:
       value: railgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5665077562102959278, guid: 3a858669079d8204484f092e39d55dd5, type: 3}
+    - {fileID: 1999455506557340936, guid: 3a858669079d8204484f092e39d55dd5, type: 3}
+    - {fileID: -8979024660871187126, guid: 3a858669079d8204484f092e39d55dd5, type: 3}
+    - {fileID: -1818237003096141866, guid: 3a858669079d8204484f092e39d55dd5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a858669079d8204484f092e39d55dd5, type: 3}
@@ -4886,11 +4890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efa18bb773a1514eb852564103676e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topRight: {x: 10, y: 0, z: 10}
-  bottomLeft: {x: -10, y: 0, z: -10}
-  separation: 1
-  playerClearRadius: 5
-  enemyPrefab: {fileID: 647998350286595607, guid: 103409f4d1b99a9469a08b6b2e26aa81, type: 3}
 --- !u!114 &1585816414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5818,7 +5817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1816722043
 Transform:
   m_ObjectHideFlags: 0
