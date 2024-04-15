@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 public class GunManager : MonoBehaviour
 {
     public static GunManager instance;
@@ -20,25 +19,26 @@ public class GunManager : MonoBehaviour
     public Sniper sniper;
     public GrenadeLauncher grenadeLauncher;
     public Melee melee;
-    public RectTransform gunHolder;
     public Gun currentGun;
     public int consecutiveSummons = 0;
     private List<Gun> guns;
 
-    public TextMeshProUGUI gunName;
+    public Image weaponSelection;
+    public Image costBar;
+    public List<Sprite> selections;
+    public Sprite[] bars;
+    public Transform weaponsContent;
+    public Animator contentAnimator;
 
-    public bool isGunHolderActive
-    {
-        get { return gunHolder.gameObject.activeSelf; }
-    }
+    public bool isGunHolderActive;
 
-    public float scrollSpeed = 1.0f;
+    public int scrollSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         melee.enabled = true;
-        gunHolder.gameObject.SetActive(false);
+        //gunHolder.gameObject.SetActive(false);
         guns = new List<Gun> { smg, ar, shotgun, sniper, grenadeLauncher };
         guns[0].gunName = "SMG";
         guns[1].gunName = "Autocannon";
@@ -52,14 +52,18 @@ public class GunManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            gunHolder.gameObject.SetActive(true);
-            gunHolder.localPosition = Vector3.zero;
-            gunName.text = guns[2].gunName;
+            isGunHolderActive = true;
+            //gunHolder.localPosition = Vector3.zero;
+
+            contentAnimator.SetBool("Show", isGunHolderActive);
+            weaponSelection.sprite = selections[2];
+            SetBarPosition(2);
+            //gunName.text = guns[2].gunName;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            isGunHolderActive = false;
+            contentAnimator.SetBool("Show", isGunHolderActive);
             SummonWeapon();
         }
         if (Input.GetKeyUp(KeyCode.F))
@@ -69,32 +73,32 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && isGunHolderActive)
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            //gunName.text = "";
+            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && isGunHolderActive)
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            //gunName.text = "";
+            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && isGunHolderActive)
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            //gunName.text = "";
+            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && isGunHolderActive)
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            //gunName.text = "";
+            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5) && isGunHolderActive)
         {
-            gunName.text = "";
-            gunHolder.gameObject.SetActive(false);
+            //gunName.text = "";
+            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(4);
         }
 
@@ -102,19 +106,45 @@ public class GunManager : MonoBehaviour
 
         if (isGunHolderActive && scrollInput != 0)
         {
-            gunHolder.localPosition += Vector3.right * Mathf.Sign(scrollInput) * scrollSpeed;
-            gunHolder.localPosition = new Vector3(Mathf.Clamp(gunHolder.localPosition.x, -230, 230), 0, 0);
+            int currentIndex = selections.IndexOf(weaponSelection.sprite);
+            currentIndex = Mathf.RoundToInt(
+                Mathf.Clamp(currentIndex + -Mathf.Sign(scrollInput) * scrollSpeed, 0, selections.Count - 1));
 
-            int currentIndex = guns.Count - 1 - Mathf.RoundToInt(gunHolder.localPosition.x + 230) / 115;
-            gunName.text = guns[currentIndex].gunName;
+            weaponSelection.sprite = selections[currentIndex];
+            SetBarPosition(currentIndex);
+
+            //gunHolder.localPosition += Vector3.right * Mathf.Sign(scrollInput) * scrollSpeed;
+            //gunHolder.localPosition = new Vector3(Mathf.Clamp(gunHolder.localPosition.x, -230, 230), 0, 0);
+
+            //int currentIndex = guns.Count - 1 - Mathf.RoundToInt(gunHolder.localPosition.x + 230) / 115;
+            //gunName.text = guns[currentIndex].gunName;
         }
     }
+
+    private void SetBarPosition(int index)
+    {
+        int yPos = 0;
+
+        switch (index)
+        {
+            case 0: yPos = 8; break;
+            case 1:
+            case 2:
+            case 3:
+                yPos = (index - 1) * -8; break;
+            case 4: yPos = -24; break;
+        }
+
+        costBar.transform.localPosition = new Vector3(costBar.transform.localPosition.x, 
+            yPos, costBar.transform.localPosition.z);
+    }
+    
 
     void SummonWeapon()
     {
         if (currentGun != null) return;
 
-        int gunIndex = guns.Count - 1 - Mathf.RoundToInt(gunHolder.localPosition.x + 230) / 115;
+        int gunIndex = selections.IndexOf(weaponSelection.sprite);
 
         SummonWeapon(gunIndex);
     }
@@ -137,8 +167,13 @@ public class GunManager : MonoBehaviour
 
         print("equipped " + currentGun.GetType().Name);
 
+        weaponSelection.sprite = selections[2];
+        SetBarPosition(2);
         currentGun.bullets = currentGun.maxBullets;
         melee.enabled = false;
+
+        if (isGunHolderActive) contentAnimator.SetBool("Show", false);
+        isGunHolderActive = false;
     }
 
     void DiscardWeapon()
