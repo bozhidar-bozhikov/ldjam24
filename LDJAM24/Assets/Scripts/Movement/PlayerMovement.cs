@@ -264,7 +264,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Jump()
     {
-       FindObjectOfType<SoundManager>().Play("Jump");
+        FindObjectOfType<SoundManager>().Play("Jump");
 
         exitingSlope = true;
 

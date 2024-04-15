@@ -36,7 +36,7 @@ public class PlayerStats : MonoBehaviour
         cells = maxCells;
         UpdateHealthBar();
 
-        quota = 0;
+        currentQuota = 0;
         quotaText.DisplayString(0 + "");
         difficultyText.DisplayString("EASY");
     }
@@ -87,20 +87,21 @@ public class PlayerStats : MonoBehaviour
         switch (type)
         {
             case EnemyType.Walker:
-            case EnemyType.Trooper:
-            case EnemyType.RocketTrooper: quotaGained = 1; break;
+            case EnemyType.Trooper: quotaGained = 1; break;
+            case EnemyType.RocketTrooper:
             case EnemyType.Berserker: quotaGained = 2; break;
             case EnemyType.Flamer: quotaGained = 3; break;
         }
 
         instance.currentQuota += quotaGained;
-        instance.quotaText.DisplayString(instance.currentQuota + "");
 
         if (instance.currentQuota >= instance.quota)
         {
             instance.currentQuota -= instance.quota;
             ChangeCells(1);
         }
+
+        instance.quotaText.DisplayString(instance.currentQuota + "");
     }
 
     private void UpdateHealthBar()

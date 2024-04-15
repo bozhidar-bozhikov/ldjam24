@@ -78,17 +78,18 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(0.875f);
         model.SetActive(true);
-        //animator.SetTrigger("Summon");
+        yield return new WaitForSeconds(0.95f);
+        animator.SetTrigger("Summon");
     }
 
     public void Discard()
     {
-        animator.SetTrigger("Discard");
         StartCoroutine(_Disable());
     }
 
     private IEnumerator _Disable()
     {
+        animator.SetTrigger("Discard");
         yield return new WaitForSeconds(0.875f);
         model.gameObject.SetActive(false);
     }

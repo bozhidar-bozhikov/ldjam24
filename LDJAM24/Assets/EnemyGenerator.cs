@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemyGenerator : MonoBehaviour
 {
     public Vector3 topRight;
     public Vector3 bottomLeft;
@@ -12,14 +12,17 @@ public class EnemySpawner : MonoBehaviour
     public Vector3[,] spawnPositions;
     public float playerClearRadius;
 
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
+    public float spawnCooldown;
+    public float cooldownReduction;
+    public float minCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateSpawnPositions();
 
-        //StartCoroutine(SpawnWithDelay());
+        StartCoroutine(SpawnWithDelay());
     }
 
     public void SpawnEnemy()
@@ -32,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
             Vector3 randomPos = spawnPositions[Random.Range(0, spawnPositions.GetLength(0)),
             Random.Range(0, spawnPositions.GetLength(1))];
 
+            if (randomPos == new Vector3(999, 999, 999)) continue;
+
             Vector3 playerPos = new Vector3(PlayerStats.player.position.x, 0, PlayerStats.player.position.z);
             Vector3 normedPos = new Vector3(randomPos.x, 0, randomPos.z);
 
@@ -42,16 +47,16 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        GameObject enemy = Instantiate(enemyPrefab, node, Quaternion.identity);
-        Destroy(enemy, 5);
+        GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], node, Quaternion.identity);
     }
 
     IEnumerator SpawnWithDelay()
     {
         SpawnEnemy();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(spawnCooldown);
 
+        spawnCooldown = Mathf.Clamp(spawnCooldown - cooldownReduction, minCooldown, 999);
         StartCoroutine(SpawnWithDelay());
     }
 
@@ -60,12 +65,12 @@ public class EnemySpawner : MonoBehaviour
         topRight += new Vector3(1, 0, 1);
 
         float width = Mathf.Abs(topRight.x - bottomLeft.x);
-        float height =Mathf.Abs(topRight.z - bottomLeft.z);
+        float height = Mathf.Abs(topRight.z - bottomLeft.z);
 
         int x = Mathf.RoundToInt(width) / separation;
         int y = Mathf.RoundToInt(height) / separation;
 
-        spawnPositions = new Vector3[x,y];
+        spawnPositions = new Vector3[x, y];
 
         for (int i = 0; i < x; i++)
         {
@@ -78,7 +83,10 @@ public class EnemySpawner : MonoBehaviour
 
                 if (Physics.Raycast(new Vector3(posX, 100, posZ), Vector3.down, out hit))
                 {
-                    spawnPositions[i, j] = hit.point;
+                    if (hit.transform.CompareTag("Ground"))
+                        spawnPositions[i, j] = hit.point;
+                    else
+                        spawnPositions[i, j] = new Vector3(999, 999, 999);
                 }
             }
         }
@@ -99,7 +107,8 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.gray;
         foreach (Vector3 item in spawnPositions)
         {
-            Gizmos.DrawWireSphere(item, 0.15f);
+            if (item != new Vector3(999, 999, 999)) 
+                Gizmos.DrawWireSphere(item, 0.15f);
         }
 
     }

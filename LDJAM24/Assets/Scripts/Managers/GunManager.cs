@@ -192,12 +192,6 @@ public class GunManager : MonoBehaviour
         isGunHolderActive = false;
 
         currentGun.Summon();
-
-        if (currentGun.model != null)
-        {
-            currentGun.model.SetActive(true);
-        }
-
     }
 
     void DiscardWeapon()

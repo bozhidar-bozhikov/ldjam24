@@ -54,7 +54,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.2
-        value: {x: -0.08, y: 0.1368889, z: 0.2589356}
+        value: {x: 0.15, y: 0, z: 0.25}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -691,7 +691,51 @@ AnimationClip:
     classID: 23
     script: {fileID: 0}
     flags: 16
-  m_PPtrCurves: []
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - time: 0.46666667
+      value: {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    attribute: m_Materials.Array.data[0]
+    path: all_weapons:Granade_launcher:Main/all_weapons:Granade_launcher:pCube3
+    classID: 23
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - time: 0.46666667
+      value: {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    attribute: m_Materials.Array.data[0]
+    path: all_weapons:Granade_launcher:Main/all_weapons:Granade_launcher:pCube2
+    classID: 23
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - time: 0.46666667
+      value: {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    attribute: m_Materials.Array.data[0]
+    path: all_weapons:Granade_launcher:Main/all_weapons:Granade_launcher:pCube1
+    classID: 23
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - time: 0.46666667
+      value: {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    attribute: m_Materials.Array.data[0]
+    path: all_weapons:Granade_launcher:Main
+    classID: 23
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -754,6 +798,42 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 2701622630
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 23
+      customType: 21
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3590344176
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 23
+      customType: 21
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 1325997130
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 23
+      customType: 21
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2382205861
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 23
+      customType: 21
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 2382205861
       attribute: 1303350129
       script: {fileID: 0}
@@ -861,7 +941,15 @@ AnimationClip:
       isPPtrCurve: 0
       isIntCurve: 0
       isSerializeReferenceCurve: 0
-    pptrCurveMapping: []
+    pptrCurveMapping:
+    - {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    - {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    - {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
+    - {fileID: 2100000, guid: 27d1f82ac12882c408d262eb00c2b27d, type: 2}
+    - {fileID: 2100000, guid: a196b72c9024bb1449904c653936d7ce, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -898,7 +986,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.2
-        value: -0.08
+        value: 0.15
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -928,7 +1016,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.2
-        value: 0.1368889
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -958,7 +1046,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.2
-        value: 0.2589356
+        value: 0.25
         inSlope: 0
         outSlope: 0
         tangentMode: 136

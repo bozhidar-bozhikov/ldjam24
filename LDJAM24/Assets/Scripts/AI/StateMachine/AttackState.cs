@@ -109,7 +109,7 @@ public class TrooperAttack : AttackState
 
         GameObject bullet = ParameterManager.CreateGameObject(ParameterManager.instance.bulletPrefab);
         bullet.transform.parent = sm.stats.firepoint.parent;
-        bullet.transform.position = sm.stats.firepoint.position;
+        bullet.transform.localPosition = sm.stats.firepoint.localPosition;
 
         yield return new WaitForSeconds(sm.stats.attackWindup);
 
