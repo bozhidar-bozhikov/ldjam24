@@ -14,7 +14,7 @@ public class AssaultRifle : Gun
 
         if (Physics.Raycast(PlayerStats.instance.firepoint.position, PlayerStats.instance.firepoint.forward, out hit, range))
         {
-            Target target = hit.transform.GetComponent<Target>();
+            EnemyStats target = hit.transform.GetComponent<EnemyStats>();
 
             if (target != null)
             {

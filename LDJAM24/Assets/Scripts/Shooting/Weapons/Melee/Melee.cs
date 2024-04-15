@@ -28,7 +28,7 @@ public class Melee : MonoBehaviour
         foreach (Collider hitCollider in colliders)
         {
             // Check if the collider has a Target component (you can adjust this based on your game)
-            Target target = hitCollider.GetComponent<Target>();
+            EnemyStats target = hitCollider.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
                 // Apply damage to targets within the sphere

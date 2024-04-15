@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyStats : MonoBehaviour
 {
     public float health;
@@ -27,6 +28,14 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         PlayerStats.EnemyDied(GetComponent<AIStateMachine>().enemyType);
+        
+        // Reset the timer and add score with the current multiplier
+        GameManager.instance.EnemyKilled();
+
+        GameManager.instance.AddScoreWithMultiplier(10);
+
+        Debug.Log("Enemy died");
+        Debug.Log("Score: " + GameManager.instance.score);
         Destroy(gameObject);
     }
 }

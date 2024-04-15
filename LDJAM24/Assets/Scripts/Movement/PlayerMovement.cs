@@ -148,11 +148,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        /*else if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
-        }
+        }*/
 
         // Mode - Walking
         else if (grounded)
