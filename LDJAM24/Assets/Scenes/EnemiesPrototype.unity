@@ -886,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &395224769
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,7 +1020,11 @@ PrefabInstance:
       value: granata launch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5665077562102959278, guid: 930d7526ea0da974f980bc366c1955e6, type: 3}
+    - {fileID: 1999455506557340936, guid: 930d7526ea0da974f980bc366c1955e6, type: 3}
+    - {fileID: -8979024660871187126, guid: 930d7526ea0da974f980bc366c1955e6, type: 3}
+    - {fileID: -1818237003096141866, guid: 930d7526ea0da974f980bc366c1955e6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 930d7526ea0da974f980bc366c1955e6, type: 3}
       insertIndex: 0
@@ -2857,7 +2861,11 @@ PrefabInstance:
       value: shotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5665077562102959278, guid: 1760ec864d05d36498d4f2de57b97c9a, type: 3}
+    - {fileID: 1999455506557340936, guid: 1760ec864d05d36498d4f2de57b97c9a, type: 3}
+    - {fileID: -8979024660871187126, guid: 1760ec864d05d36498d4f2de57b97c9a, type: 3}
+    - {fileID: -1818237003096141866, guid: 1760ec864d05d36498d4f2de57b97c9a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1760ec864d05d36498d4f2de57b97c9a, type: 3}
       insertIndex: 0
@@ -3966,8 +3974,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: autocannon
       objectReference: {fileID: 0}
+    - target: {fileID: 7980078697073917068, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980078697073917068, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -6.361109e-15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5665077562102959278, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
+    - {fileID: 1999455506557340936, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
+    - {fileID: -8979024660871187126, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
+    - {fileID: -1818237003096141866, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92525624b45a16d40b1a4c7127c01e66, type: 3}
       insertIndex: 0
@@ -4890,6 +4910,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efa18bb773a1514eb852564103676e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topRight: {x: 0, y: 0, z: 0}
+  bottomLeft: {x: 0, y: 0, z: 0}
+  separation: 0
+  playerClearRadius: 0
+  enemyPrefab: {fileID: 0}
 --- !u!114 &1585816414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5128,7 +5153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1594497616
 Transform:
   m_ObjectHideFlags: 0
@@ -5446,7 +5471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1746906813
 Transform:
   m_ObjectHideFlags: 0
