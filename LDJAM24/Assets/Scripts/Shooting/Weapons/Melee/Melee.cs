@@ -31,6 +31,7 @@ public class Melee : MonoBehaviour
 
     public IEnumerator Unsheathe()
     {
+        yield return new WaitForSeconds(0.95f); //TODO: fix, this is bad
         animator.SetBool("Show", true);
         yield return new WaitForSeconds(unsheatheTime);
         isEnabled = true;

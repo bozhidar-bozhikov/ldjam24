@@ -75,7 +75,8 @@ public class Gun : MonoBehaviour
     private IEnumerator _Summon()
     {
         yield return new WaitForSeconds(0.875f);
-        //summon animation
+        model.SetActive(true);
+        //animator.SetTrigger("Summon");
     }
 
     public void Discard()
@@ -87,7 +88,6 @@ public class Gun : MonoBehaviour
     private IEnumerator _Disable()
     {
         yield return new WaitForSeconds(0.875f);
-
-        gameObject.SetActive(false);
+        model.gameObject.SetActive(false);
     }
 }

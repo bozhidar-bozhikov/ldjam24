@@ -42,7 +42,7 @@ public class GunManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        melee.enabled = true;
+        melee.animator.SetBool("Show", true);
         melee.StartCoroutine(melee.Unsheathe());
         //gunHolder.gameObject.SetActive(false);
         guns = new List<Gun> { smg, ar, shotgun, sniper, grenadeLauncher };
@@ -80,32 +80,22 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && isGunHolderActive)
         {
-            //gunName.text = "";
-            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && isGunHolderActive)
         {
-            //gunName.text = "";
-            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && isGunHolderActive)
         {
-            //gunName.text = "";
-            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && isGunHolderActive)
         {
-            //gunName.text = "";
-            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5) && isGunHolderActive)
         {
-            //gunName.text = "";
-            //gunHolder.gameObject.SetActive(false);
             SummonWeapon(4);
         }
 
@@ -200,12 +190,11 @@ public class GunManager : MonoBehaviour
         if (isGunHolderActive) contentAnimator.SetBool("Show", false);
         isGunHolderActive = false;
 
-        currentGun.model.SetActive(true);
+        currentGun.Summon();
     }
 
     void DiscardWeapon()
     {
-        melee.enabled = true;
         melee.StartCoroutine(melee.Unsheathe());
 
         if (currentGun == null) return;
