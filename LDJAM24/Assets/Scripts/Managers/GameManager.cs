@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ResetScore();
+
+        FindObjectOfType<SoundManager>().Play("Background");
     }
 
     public void AddScoreWithMultiplier(int amount)

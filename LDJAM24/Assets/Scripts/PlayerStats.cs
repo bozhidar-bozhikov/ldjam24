@@ -59,6 +59,8 @@ public class PlayerStats : MonoBehaviour
 
     public static void ChangeCells(int amount)
     {
+        FindObjectOfType<SoundManager>().Play("Player_Hurt");
+
         instance.cells = Mathf.Clamp(instance.cells + amount, 0, instance.maxCells);
         //instance.hpBarFill.sizeDelta = new Vector2(4 * instance.cells, 8);
         instance.UpdateHealthBar();

@@ -6688,6 +6688,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1.04
     source: {fileID: 0}
+  - name: Player_Hurt
+    clip: {fileID: 8300000, guid: a0a31f7a982472142ab066b1ad34ed2b, type: 3}
+    volume: 1
+    pitch: 1.04
+    source: {fileID: 0}
+  - name: Background
+    clip: {fileID: 8300000, guid: 8a82df22c63cbf247af73aa526681f1b, type: 3}
+    volume: 0.323
+    pitch: 1.04
+    source: {fileID: 0}
 --- !u!4 &1847544126
 Transform:
   m_ObjectHideFlags: 0
