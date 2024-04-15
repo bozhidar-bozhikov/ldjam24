@@ -110,8 +110,9 @@ public class GunManager : MonoBehaviour
             SetBarPosition(currentIndex);
 
             //if (selections.IndexOf(weaponSelection.sprite) == GetCurrentGunIndex())
-            
-            if (guns[currentIndex] == previousGun) { 
+
+            if (guns[currentIndex] == previousGun)
+            {
                 print("selected current weapon");
                 UpdateCostBarFill(currentIndex, true);
             }
@@ -144,7 +145,7 @@ public class GunManager : MonoBehaviour
             case 4: yPos = -24; break;
         }
 
-        costBar.transform.localPosition = new Vector3(costBar.transform.localPosition.x, 
+        costBar.transform.localPosition = new Vector3(costBar.transform.localPosition.x,
             yPos, costBar.transform.localPosition.z);
     }
 
@@ -191,6 +192,12 @@ public class GunManager : MonoBehaviour
         isGunHolderActive = false;
 
         currentGun.Summon();
+
+        if (currentGun.model != null)
+        {
+            currentGun.model.SetActive(true);
+        }
+
     }
 
     void DiscardWeapon()

@@ -17,16 +17,22 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        FindObjectOfType<SoundManager>().Play("Enemy_Hurt");
+
         health -= damage;
 
         if (health <= 0)
         {
             Die();
         }
+
+        Debug.Log("Enemy took damage. Add Particles");
     }
 
     private void Die()
     {
+        FindObjectOfType<SoundManager>().Play("Enemy_Die");
+
         PlayerStats.EnemyDied(GetComponent<AIStateMachine>().enemyType);
         
         // Reset the timer and add score with the current multiplier

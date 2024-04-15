@@ -1,102 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Audio;
 
-public static class SoundManager
+public class SoundManager : MonoBehaviour
 {
-    public enum Sound
-    {
-        PlayerAttack,
-        EnemyAttack,
-        PlayerDamage,
-        EnemyDamage,
-        PlayerDeath,
-        EnemyDeath,
-        Jump,
-        Walk,
-        Slide
-    }
+    public Sounds[] sounds;
 
-    private static Dictionary<Sound, float> soundTimerDictionary;
-    private static GameObject oneShotGameObject;
-    private static AudioSource oneShotAudioSource;
-    public static void Initialize()
-    {
-        soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.Walk] = 0;
-    }
+    public static SoundManager instance;
 
-    public static void PlaySound(Sound sound, Vector3 position)
+    void Awake()
     {
-        if (CanPlaySound(sound))
+        if(instance == null)
         {
-            GameObject soundGameObject = new GameObject("Sound");
-            soundGameObject.transform.position = position;
-            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-            audioSource.clip = GetAudioClip(sound);
-            audioSource.maxDistance = 100f;
-            audioSource.spatialBlend = 1f;
-            audioSource.rolloffMode = AudioRolloffMode.Linear;
-            audioSource.dopplerLevel = 0f;
-            audioSource.Play();
+            instance = this;
 
-            Object.Destroy(soundGameObject, audioSource.clip.length);
+            DontDestroyOnLoad(gameObject);
         }
-    }
-    public static void PlaySound(Sound sound)
-    {
-        if (CanPlaySound(sound))
+        else
         {
-            if(oneShotGameObject == null)
-            {
-                oneShotGameObject = new GameObject("One Shot Sound");
-                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
-            }
-            oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
+            Destroy(gameObject);
+        }
+
+        foreach(Sounds s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
         }
     }
 
-    private static bool CanPlaySound(Sound sound)
+
+    public void Play(string name)
     {
-        switch (sound)
+        Sounds s = Array.Find(sounds, sound => sound.name == name);
+        if(s == null)
         {
-            default:
-                return true;
-            case Sound.Walk:
-                if (soundTimerDictionary.ContainsKey(sound))
-                {
-                    float lastTimePlayed = soundTimerDictionary[sound];
-                    float playerWalkTimerMax = 0.05f;
-                    if (lastTimePlayed + playerWalkTimerMax < Time.time)
-                    {
-                        soundTimerDictionary[sound] = Time.time;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return true;
-                }
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
         }
+        s.source.Play();
     }
-
-    private static AudioClip GetAudioClip(Sound sound)
-    {
-        foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClips)
-        {
-            if (soundAudioClip.sound == sound)
-            {
-                return soundAudioClip.audioClip;
-            }
-        }
-        Debug.LogError("Sound " + sound + " not found!");
-        return null;
-    }
-
-
 
 }
 

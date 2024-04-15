@@ -131,6 +131,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // Mode - Sliding
         if (sliding)
         {
+
             state = MovementState.sliding;
 
             if (OnSlope() && rb.velocity.y < 0.1f)
@@ -209,7 +210,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
     }
 
     private void MovePlayer()
-    {
+    { 
+        //FindObjectOfType<SoundManager>().Play("Walk");
+
         // calculate movement direction
         if (!sliding)
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -233,6 +236,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // turn gravity off while on slope
         rb.useGravity = !OnSlope();
+
     }
 
     private void SpeedControl()
@@ -260,6 +264,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Jump()
     {
+       FindObjectOfType<SoundManager>().Play("Jump");
+
         exitingSlope = true;
 
         // reset y velocity
