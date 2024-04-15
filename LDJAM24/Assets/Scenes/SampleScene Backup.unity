@@ -445,6 +445,63 @@ MonoBehaviour:
   - {r: 0.227451, g: 0.37647063, b: 0.2901961, a: 0}
   - {r: 0.30980393, g: 0.4666667, b: 0.32941177, a: 0}
   - {r: 0.6313726, g: 0.62352943, b: 0.48627454, a: 0}
+--- !u!1001 &695412842
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9610567
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.4882956
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
+      propertyPath: m_Name
+      value: blaster shoot (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c6c0c0fb336b8849b651538b763829c, type: 3}
 --- !u!1001 &708607823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1244,3 +1301,4 @@ SceneRoots:
   - {fileID: 708607823}
   - {fileID: 919618729}
   - {fileID: 754689857}
+  - {fileID: 695412842}
