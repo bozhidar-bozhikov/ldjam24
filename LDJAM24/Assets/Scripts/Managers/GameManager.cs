@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public float score;
-    public float multiplier = 1.5f;
+    public int score;
+    public int multiplier = 1;
 
     // Timer variables
     public float maxTimerDuration = 10f;
     private float currentTimer;
     private Coroutine timerCoroutine;
+    public TextmodeSentence scoreText;
+    public TextmodeSentence multText;
+    public RectTransform timerFill;
 
 
     private void Awake()
@@ -22,15 +25,22 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-   public void AddScoreWithMultiplier(float amount)
+    private void Start()
+    {
+        ResetScore();
+    }
+
+    public void AddScoreWithMultiplier(int amount)
     { 
         if (multiplier == 0)
         {
             score += amount;
+            scoreText.DisplayString(score + "");
         }
         else
         {
             score += amount * multiplier;
+            scoreText.DisplayString(score + "");
         }
     }
 
@@ -40,19 +50,15 @@ public class GameManager : MonoBehaviour
         if(currentTimer <= 0)
         {
             currentTimer = maxTimerDuration;
-            multiplier += 0.5f;
+            multiplier += 1;
+            multText.DisplayString(multiplier + "");
 
-            // Start or restart the timer coroutine
-            if (timerCoroutine != null)
-                StopCoroutine(timerCoroutine);
-            timerCoroutine = StartCoroutine(UpdateTimer());
-
+            StartCoroutine(UpdateTimer());
         }
         else
         {
-            currentTimer += maxTimerDuration;
+            currentTimer = maxTimerDuration;
         }
-
 
         // Add score with multiplier
         AddScoreWithMultiplier(1);
@@ -60,19 +66,27 @@ public class GameManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        scoreText.DisplayString(0 + "");
+        multiplier = 1;
+        multText.DisplayString(1 + "");
     }
 
     public IEnumerator UpdateTimer()
     {
-        while (true)
+        while (currentTimer > 0)
         {
             yield return null;
             currentTimer -= Time.deltaTime;
 
+            float sizeX = currentTimer / maxTimerDuration * 84;
+            timerFill.sizeDelta = new Vector2(Mathf.Clamp(sizeX, 0, 40), 4);
+
             if (currentTimer <= 0)
             {
                 // Reset multiplier
-                multiplier = 1f;
+                multiplier = 1;
+                multText.DisplayString(1 + "");
+
                 yield break;
             }
         }

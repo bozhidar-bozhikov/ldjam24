@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2131621754090668998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6318321154839559871}
+  - component: {fileID: 9113444983757641239}
+  - component: {fileID: 6236796450833869051}
+  - component: {fileID: 5313540025453972366}
+  m_Layer: 5
+  m_Name: Textmode Sentence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6318321154839559871
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131621754090668998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -16}
+  m_SizeDelta: {x: 16, y: 8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9113444983757641239
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131621754090668998}
+  m_CullTransparentMesh: 1
+--- !u!114 &6236796450833869051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131621754090668998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 8, y: 8}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!114 &5313540025453972366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131621754090668998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c096e49b060f9240abb48b90249c8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 6318321154839559871}
+  grid: {fileID: 6236796450833869051}
+  symbols:
+  - {fileID: 258212905, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -537963531, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1831852907, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 2146183813, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 725169286, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1000145783, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1382906247, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 681881058, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 25238806, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1362654605, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 243591170, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -118222093, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1141425773, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1947259599, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 952643085, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1765332377, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 685087718, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 41369748, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -329178714, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1975133201, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1814374631, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -363343819, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 653298875, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1285377567, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -354943302, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1060812077, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1827650749, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -2126720496, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1688493568, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -1746069133, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -137015913, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1824084180, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 2143445952, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 21649238, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -985207776, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1837298009, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -837043060, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -586736180, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -162358987, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 593382398, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: -589651376, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 510676518, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1137173087, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 196086749, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 906080328, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  - {fileID: 1736320141, guid: 6ee41f6d155ec614e91a41c83c02b5b7, type: 3}
+  symbolPrefab: {fileID: 7033885541232721817, guid: 043bf35a3955aac40805e7dd643e6e19, type: 3}
+  colors:
+  - {r: 1, g: 1, b: 1, a: 1}

@@ -20,7 +20,7 @@ public class GrenadeLauncher : Gun
     void FireGrenade()
     {
         // Instantiate the grenade prefab
-        GameObject grenade = Instantiate(grenadePrefab, PlayerStats.instance.firepoint.position, Quaternion.identity);
+        GameObject grenade = Instantiate(grenadePrefab, trailpoint.position, Quaternion.identity);
 
         // Apply an initial force to the grenade
         Rigidbody rb = grenade.GetComponent<Rigidbody>();

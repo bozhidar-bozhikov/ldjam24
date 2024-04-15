@@ -13,6 +13,10 @@ public class Gun : MonoBehaviour
     public int maxBullets;
     public int bullets;
 
+    public Animator animator;
+    public Transform trailpoint;
+    public GameObject model;
+
     private void Start()
     {
         fpsCam = Camera.main;
@@ -29,6 +33,8 @@ public class Gun : MonoBehaviour
 
     protected virtual void Shoot()
     {
+        animator.SetTrigger("Shoot");
+
         bullets--;
 
         if (bullets <= 0) GunManager.RanOut();
@@ -40,7 +46,7 @@ public class Gun : MonoBehaviour
 
         if (hit.collider != null)
         {
-            bullet.transform.forward = hit.point - PlayerStats.instance.trailpoint.position;
+            bullet.transform.forward = hit.point - trailpoint.position;
             bullet.transform.localScale = new Vector3(1, 1, Vector3.Magnitude(PlayerStats.instance.firepoint.position - hit.point));
         }
 
@@ -50,7 +56,7 @@ public class Gun : MonoBehaviour
     protected GameObject CreatePhysicalBullet(Vector3 direction)
     {
         GameObject bullet = Instantiate(ParameterManager.instance.playerBulletPrefab,
-            PlayerStats.instance.trailpoint.position, Quaternion.identity);
+            trailpoint.position, Quaternion.identity);
 
         Destroy(bullet, ParameterManager.instance.playerBulletDestroyDelay);
 
@@ -59,5 +65,29 @@ public class Gun : MonoBehaviour
         bullet.transform.localScale = new Vector3(1, 1, 999);
 
         return bullet;
+    }
+
+    public void Summon()
+    {
+        StartCoroutine(_Summon());
+    }
+
+    private IEnumerator _Summon()
+    {
+        yield return new WaitForSeconds(0.875f);
+        //summon animation
+    }
+
+    public void Discard()
+    {
+        animator.SetTrigger("Discard");
+        StartCoroutine(_Disable());
+    }
+
+    private IEnumerator _Disable()
+    {
+        yield return new WaitForSeconds(0.875f);
+
+        gameObject.SetActive(false);
     }
 }
